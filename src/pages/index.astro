@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
+import Cal from "@components/Cal.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
@@ -23,9 +24,7 @@ const projects: CollectionEntry<"projects">[] = (
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <aside data-pagefind-ignore>
-      <h1 class="font-semibold text-black dark:text-white">
-        Hey! 🔬
-      </h1>
+      <h1 class="font-semibold text-black dark:text-white">Hey! 🔬</h1>
       <div class="space-y-16">
         <section>
           <article class="space-y-4">
@@ -37,10 +36,8 @@ const projects: CollectionEntry<"projects">[] = (
             </span>
             <span class="animate">
               <p>
-                Here I want to share my reflexions, experiences and projects as a student and a person.
-              </p>
-              <p>
-                
+                Here I want to share my reflexions, experiences and projects as
+                a student and a person.
               </p>
             </span>
           </article>
@@ -89,7 +86,8 @@ const projects: CollectionEntry<"projects">[] = (
           <article>
             <p>
               If you want to get in touch with me about something or just to say
-              hi, reach out on social media or send me an email.
+              hi, reach out on social media, send me an email, or book a short
+              call.
             </p>
           </article>
           <ul class="not-prose flex flex-wrap gap-2">
@@ -116,6 +114,10 @@ const projects: CollectionEntry<"projects">[] = (
               </Link>
             </li>
           </ul>
+          <Cal
+            label="Let's talk"
+            class="leading-inherit inline-block cursor-pointer border-none bg-transparent p-0 align-baseline text-current text-inherit underline decoration-black/30 underline-offset-[3px] transition-colors duration-300 ease-in-out hover:text-black hover:decoration-black/50 focus-visible:text-black focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:text-white dark:hover:decoration-white/50 dark:focus-visible:text-white dark:focus-visible:decoration-white/50"
+          />
         </section>
       </div>
     </aside>
