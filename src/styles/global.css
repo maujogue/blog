@@ -59,7 +59,7 @@
   }
 
   main {
-    @apply flex-1 py-32;
+    @apply flex-1 pt-22 pb-12;
   }
 
   footer {

@@ -112,10 +112,6 @@ The "Hey! 🔬" section and "Let's Connect" copy live here. Update the paragraph
 
 Blog posts include a [Giscus](https://giscus.app) comment section. To use your own GitHub repo for comments, install the Giscus app on your repo and replace the `data-repo`, `data-repo-id`, `data-category`, and `data-category-id` attributes in this file.
 
-### Booking link — `src/components/Cal.astro`
-
-The "Let's talk" button on the homepage opens a [Cal.com](https://cal.com) scheduling widget. Update `data-cal-link`, `data-cal-namespace`, and the `Cal("init", …)` call to point to your own event type.
-
 ### Content schema — `src/content.config.ts`
 
 Defines the required/optional frontmatter fields for blog posts and projects. Only edit this if you want to add new metadata fields (e.g. `author`, `image`).
