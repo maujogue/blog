@@ -1,12 +1,17 @@
 ---
-title: "7 hackathons, 4 victoires. Anatomie de l'exercice."
-description: "Ce qu'est vraiment un hackathon, et ce que personne ne vous dit avant le premier."
-date: 2026-10-14
+title: "Anatomie du hackathon — 1. C'est quoi, et pour qui ?"
+description: "7 épreuves et 4 victoires plus tard : ce qu'on ne sait pas avant de se lancer"
+date: 2026-10-13
 tags: ["hackathon"]
 draft: false
 ---
 
-> Ce post 0 est une introduction et une mise en contexte. 
+> **Anatomie du hackathon** — une série en 6 épisodes.  
+> **1. C'est quoi, et pour qui ?** ← vous êtes ici  
+> 2. [Le produit avant le code](/blog/le-produit-avant-le-code)  
+> 3. Le pitch · 4. Des gens différents dans la même pièce · 5. Ce qu'un hackathon ne vous apportera pas · 6. Rentabiliser un hackathon — *à venir*
+
+> Ce premier épisode est une introduction et une mise en contexte. 
 > Vous n'avez pas le temps pour les amuses-bouches ? [rdv au sommaire !](#sommaire)
 
 Après la fin de mes études, j'ai voulu revenir sur l'une des plus grandes découverte et fiertés de mon cursus : les hackathons.
@@ -83,11 +88,11 @@ Sept formats, sept sujets, sept environnements. Et pourtant, on retrouve presque
 
 ## Sommaire : votre feuilleton en plusieurs épisodes
 
-1. **[Le produit avant le code](/blog/le-produit-avant-le-code)** : on a gagné un hackathon sans écrire une ligne. Le plus dur, c'était de trouver quoi construire.
-2. **Le pitch, l'exercice qui fait toute la différence** : et qu'il m'a fallu 7 hackathons pour prendre au sérieux.
-3. **Des gens différents dans la même pièce** : experts métier, mentors, coéquipiers : ce qu'on apprend des autres.
-4. **Ce qu'un hackathon ne vous apportera pas** : il faut savoir avant d'y aller que tout n'est pas rose.
-5. **Rentabiliser un hackathon** : avant, pendant, après : choisir, préparer, valoriser.
+2. **[Le produit avant le code](/blog/le-produit-avant-le-code)** : on a gagné un hackathon sans écrire une ligne. Le plus dur, c'était de trouver quoi construire.
+3. **Le pitch, l'exercice qui fait toute la différence** : et qu'il m'a fallu 7 hackathons pour prendre au sérieux.
+4. **Des gens différents dans la même pièce** : experts métier, mentors, coéquipiers : ce qu'on apprend des autres.
+5. **Ce qu'un hackathon ne vous apportera pas** : il faut savoir avant d'y aller que tout n'est pas rose.
+6. **Rentabiliser un hackathon** : avant, pendant, après : choisir, préparer, valoriser.
 
 ## Alors, Fourvière ?
 
