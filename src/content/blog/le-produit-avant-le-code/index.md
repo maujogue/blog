@@ -1,15 +1,10 @@
 ---
-title: "Anatomie du hackathon — 2. Le produit avant le code"
+title: "Le produit avant le code — Anatomie du hackathon #2"
 description: "On n'a pas gagné avec du code. 5 jours à Oléron, où le plus dur a été de trouver quoi construire."
 date: 2026-10-14
 tags: ["hackathon"]
 draft: false
 ---
-
-> **Anatomie du hackathon** — une série en 6 épisodes.  
-> 1. [C'est quoi, et pour qui ?](/blog/7-hackathons-4-victoires)  
-> **2. Le produit avant le code** ← vous êtes ici  
-> 3. Le pitch · 4. Des gens différents dans la même pièce · 5. Ce qu'un hackathon ne vous apportera pas · 6. Rentabiliser un hackathon — *à venir*
 
 *Hackathon La Suite : 5 jours sur l'Île d'Oléron pour penser produit.*
 

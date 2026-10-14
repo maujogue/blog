@@ -1,15 +1,10 @@
 ---
-title: "Anatomie du hackathon — 1. C'est quoi, et pour qui ?"
+title: "Un hackathon, c'est quoi et pour qui ? — Anatomie du hackathon #1"
 description: "7 épreuves et 4 victoires plus tard : ce qu'on ne sait pas avant de se lancer"
 date: 2026-10-13
 tags: ["hackathon"]
 draft: false
 ---
-
-> **Anatomie du hackathon** — une série en 6 épisodes.  
-> **1. C'est quoi, et pour qui ?** ← vous êtes ici  
-> 2. [Le produit avant le code](/blog/le-produit-avant-le-code)  
-> 3. Le pitch · 4. Des gens différents dans la même pièce · 5. Ce qu'un hackathon ne vous apportera pas · 6. Rentabiliser un hackathon — *à venir*
 
 > Ce premier épisode est une introduction et une mise en contexte. 
 > Vous n'avez pas le temps pour les amuses-bouches ? [rdv au sommaire !](#sommaire)
