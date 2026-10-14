@@ -105,6 +105,6 @@ Oui. Les deux premiers jours ont été très durs. Ça s'est amélioré ensuite.
 
 ---
 
-*Rendez-vous dans le premier épisode !*
+*Rendez-vous dans [le prochain épisode](/blog/le-produit-avant-le-code) !*
 
 PS : ceci est un coup d'essai à la rédaction de blog. C'est un exercice difficile (qui fera l'objet de son blog post !). Commencer par une série, sur un sujet si vaste et complet, je vous accorde que c'est pas le plus simple !
