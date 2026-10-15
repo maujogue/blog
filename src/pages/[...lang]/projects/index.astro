@@ -1,27 +1,36 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
-import { PROJECTS } from "@consts";
+import {
+  getLang,
+  getLocalizedEntries,
+  langParams,
+  useTranslations,
+} from "@i18n/utils";
 
-const projects = (await getCollection("projects"))
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+export function getStaticPaths() {
+  return langParams();
+}
+
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+
+const projects = await getLocalizedEntries("projects", lang);
 ---
 
-<Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
+<Layout title={t("projects.title")} description={t("projects.description")}>
   <Container>
     <aside data-pagefind-ignore>
       <div class="space-y-10">
         <div class="animate font-semibold text-black dark:text-white">
-          Projects
+          {t("projects.title")}
         </div>
         <ul class="animate not-prose flex flex-col gap-4">
           {
             projects.map((project) => (
               <li>
-                <ArrowCard entry={project} />
+                <ArrowCard item={project} />
               </li>
             ))
           }

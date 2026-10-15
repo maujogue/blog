@@ -1,12 +1,10 @@
 ---
-title: "Le produit avant le code — Anatomie du hackathon #2"
-description: "On n'a pas gagné avec du code. 5 jours à Oléron, où le plus dur a été de trouver quoi construire."
+title: "Le produit avant le code - Anatomie du hackathon #2"
+description: "On n'a pas gagné avec du code."
 date: 2026-10-14
 tags: ["hackathon"]
 draft: false
 ---
-
-*Hackathon La Suite : 5 jours sur l'Île d'Oléron pour penser produit.*
 
 On a gagné le prix du jury d'un hackathon. Claude a écrit tout le code. Et pourtant, qu'est-ce que ça a été dur ! Le plus difficile n'a pas été de construire notre solution : ça a été de trouver ce qui méritait d'être construit.
 

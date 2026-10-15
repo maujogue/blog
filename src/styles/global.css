@@ -59,7 +59,7 @@
   }
 
   main {
-    @apply flex-1 pt-22 pb-12;
+    @apply flex-1 pt-32 pb-12 sm:pt-22;
   }
 
   footer {

@@ -16,7 +16,6 @@
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource/geist-mono": "^5.2.7",
     "@fontsource/geist-sans": "^5.2.5",
-    "@n8n/chat": "^1.31.0",
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.13.9",
     "astro-pagefind": "^1.8.5",

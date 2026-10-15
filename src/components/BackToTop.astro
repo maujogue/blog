@@ -1,5 +1,7 @@
 ---
+import { getLang, useTranslations } from "@i18n/utils";
 
+const t = useTranslations(getLang(Astro));
 ---
 
 <script>
@@ -36,5 +38,5 @@
       class="translate-x-1 transition-transform duration-300 ease-in-out group-hover:translate-x-0 group-focus-visible:translate-x-0"
     ></polyline>
   </svg>
-  <div class="text-sm">Back to top</div>
+  <div class="text-sm">{t("footer.backToTop")}</div>
 </button>

@@ -1,13 +1,14 @@
 ---
-title: "Welcome to my blog"
-description: "My first article"
+title: "Bienvenue"
+description: "Mon premier article!"
 date: 2026-01-07
 tags: ["letsgo"]
 draft: false
 ---
 
-#Hey
 
-> This is my first article !
+Voici mon premier article!
 
-I'm now testing the CI-CD.
+Si vous lisez ceci, c'est que le blog est en ligne.
+
+> Magnifique!

@@ -1,22 +1,43 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import {
+  getLang,
+  localizePath,
+  useTranslations,
+  type LocalizedEntry,
+} from "@i18n/utils";
 
 type Props = {
-  entry: CollectionEntry<"blog"> | CollectionEntry<"projects">;
+  item: LocalizedEntry<"blog"> | LocalizedEntry<"projects">;
 };
 
-const { entry } = Astro.props as {
-  entry: CollectionEntry<"blog"> | CollectionEntry<"projects">;
-};
+const { item } = Astro.props;
+const { entry, slug } = item;
+const lang = getLang(Astro);
+const t = useTranslations(lang);
 ---
 
 <a
-  href={`/${entry.collection}/${entry.id}`}
+  href={localizePath(`/${entry.collection}/${slug}`, lang)}
+  lang={entry.data.lang !== lang ? entry.data.lang : undefined}
   class="not-prose group relative flex flex-nowrap rounded-lg border border-black/15 px-4 py-3 pr-10 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
 >
   <div class="flex flex-1 flex-col truncate">
-    <div class="font-semibold">
-      {entry.data.title}
+    <div class="flex items-center gap-2">
+      <span class="truncate font-semibold">{entry.data.title}</span>
+      {
+        entry.data.aiTranslated && (
+          <span class="shrink-0 rounded-sm border border-black/15 px-1.5 text-xs font-normal dark:border-white/20">
+            {t("post.aiTranslated")}
+          </span>
+        )
+      }
+      {
+        item.isFallback && (
+          <span class="shrink-0 rounded-sm border border-black/15 px-1.5 text-xs font-normal uppercase dark:border-white/20">
+            {entry.data.lang}
+          </span>
+        )
+      }
     </div>
     <div class="text-sm">
       {entry.data.description}

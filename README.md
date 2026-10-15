@@ -108,10 +108,6 @@ site: "https://maujogue.fr",
 
 The "Hey! 🔬" section and "Let's Connect" copy live here. Update the paragraphs to change what visitors read on the landing page.
 
-### Comments — `src/components/Giscus.astro`
-
-Blog posts include a [Giscus](https://giscus.app) comment section. To use your own GitHub repo for comments, install the Giscus app on your repo and replace the `data-repo`, `data-repo-id`, `data-category`, and `data-category-id` attributes in this file.
-
 ### Content schema — `src/content.config.ts`
 
 Defines the required/optional frontmatter fields for blog posts and projects. Only edit this if you want to add new metadata fields (e.g. `author`, `image`).

@@ -3,21 +3,28 @@ import Head from "@components/Head.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Pagefind from "@components/PageFind.astro";
-import Chat from "@components/Chat.astro";
 import { SITE } from "@consts";
+import { getLang } from "@i18n/utils";
 
 type Props = {
   title: string;
   description: string;
+  /** Path of the canonical page, when it isn't this one. */
+  canonical?: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, canonical } = Astro.props;
+const lang = getLang(Astro);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
-    <Head title={`${title} | ${SITE.TITLE}`} description={description} />
+    <Head
+      title={`${title} | ${SITE.TITLE}`}
+      description={description}
+      canonical={canonical}
+    />
   </head>
   <body>
     <noscript>
@@ -34,6 +41,5 @@ const { title, description } = Astro.props;
     </main>
     <Footer />
     <Pagefind />
-    <Chat />
   </body>
 </html>

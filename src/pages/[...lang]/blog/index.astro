@@ -1,21 +1,31 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
-import { BLOG } from "@consts";
 import Tags from "@components/Tags.astro";
+import {
+  getLang,
+  getLocalizedEntries,
+  langParams,
+  useTranslations,
+  type LocalizedEntry,
+} from "@i18n/utils";
 
-const data = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+export function getStaticPaths() {
+  return langParams();
+}
+
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+
+const data = await getLocalizedEntries("blog", lang);
 
 type Acc = {
-  [year: string]: CollectionEntry<"blog">[];
+  [year: string]: LocalizedEntry<"blog">[];
 };
 
 const posts = data.reduce((acc: Acc, post) => {
-  const year = post.data.date.getFullYear().toString();
+  const year = post.entry.data.date.getFullYear().toString();
   if (!acc[year]) {
     acc[year] = [];
   }
@@ -26,11 +36,11 @@ const posts = data.reduce((acc: Acc, post) => {
 const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
-<Layout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+<Layout title={t("blog.title")} description={t("blog.description")}>
   <Container>
     <aside data-pagefind-ignore>
       <div class="space-y-10">
-        <Tags />
+        <Tags posts={data} />
         <div class="space-y-4">
           {
             years.map((year) => (
@@ -42,7 +52,7 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
                   <ul class="not-prose flex flex-col gap-4">
                     {posts[year].map((post) => (
                       <li>
-                        <ArrowCard entry={post} />
+                        <ArrowCard item={post} />
                       </li>
                     ))}
                   </ul>

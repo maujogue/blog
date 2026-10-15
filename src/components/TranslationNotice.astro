@@ -1,0 +1,49 @@
+---
+import {
+  getLang,
+  languageName,
+  localizePath,
+  useTranslations,
+  type LocalizedEntry,
+} from "@i18n/utils";
+
+type Props = {
+  item: LocalizedEntry<"blog"> | LocalizedEntry<"projects">;
+};
+
+const { item } = Astro.props;
+const { entry, original } = item;
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+---
+
+{
+  original && (
+    <div class="animate not-prose flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-black/15 px-3 py-2 text-sm dark:border-white/20">
+      <span class="rounded-sm border border-black/15 px-1.5 text-xs dark:border-white/20">
+        🤖 {t("post.aiTranslated")}
+      </span>
+      <span>
+        {t("post.aiTranslatedNote", {
+          source: languageName(original.data.lang, lang),
+        })}
+      </span>
+      <a
+        href={localizePath(`/${entry.collection}/${item.slug}`, original.data.lang)}
+        hreflang={original.data.lang}
+        data-lang-switch={original.data.lang}
+        data-astro-reload
+        class="underline underline-offset-[3px] decoration-black/30 hover:text-black dark:decoration-white/30 dark:hover:text-white"
+      >
+        {t("post.readOriginal")}
+      </a>
+    </div>
+  )
+}
+{
+  item.isFallback && (
+    <div class="animate not-prose rounded-lg border border-black/15 px-3 py-2 text-sm dark:border-white/20">
+      {t("post.onlyIn", { source: languageName(entry.data.lang, lang) })}
+    </div>
+  )
+}

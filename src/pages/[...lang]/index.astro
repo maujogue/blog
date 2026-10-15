@@ -1,26 +1,36 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { SITE, HOME, SOCIALS } from "@consts";
+import { SITE, SOCIALS } from "@consts";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import {
+  getLang,
+  getLocalizedEntries,
+  langParams,
+  localizePath,
+  useTranslations,
+} from "@i18n/utils";
 
-const blog = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
+export function getStaticPaths() {
+  return langParams();
+}
 
-const projects: CollectionEntry<"projects">[] = (
-  await getCollection("projects")
-)
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+
+const blog = (await getLocalizedEntries("blog", lang)).slice(
+  0,
+  SITE.NUM_POSTS_ON_HOMEPAGE,
+);
+
+const projects = (await getLocalizedEntries("projects", lang)).slice(
+  0,
+  SITE.NUM_PROJECTS_ON_HOMEPAGE,
+);
 ---
 
-<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+<Layout title={t("home.title")} description={t("home.description")}>
   <Container>
     <aside data-pagefind-ignore>
       <h1 class="font-semibold text-black dark:text-white">Hey! 🔬</h1>
@@ -29,15 +39,12 @@ const projects: CollectionEntry<"projects">[] = (
           <article class="space-y-4">
             <span>
               <p>
-                This will be my blog and portfolio. <br />
-                It's a work in progress, so don't expect anything of it!
+                {t("home.intro1")} <br />
+                {t("home.intro2")}
               </p>
             </span>
             <span class="animate">
-              <p>
-                Here I want to share my reflexions, experiences and projects as
-                a student and a person.
-              </p>
+              <p>{t("home.intro3")}</p>
             </span>
           </article>
         </section>
@@ -45,15 +52,15 @@ const projects: CollectionEntry<"projects">[] = (
         <section class="animate space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-y-2">
             <h2 class="font-semibold text-black dark:text-white">
-              Latest posts
+              {t("home.latestPosts")}
             </h2>
-            <Link href="/blog"> See all posts </Link>
+            <Link href={localizePath("/blog", lang)}>{t("home.allPosts")}</Link>
           </div>
           <ul class="not-prose flex flex-col gap-4">
             {
               blog.map((post) => (
                 <li>
-                  <ArrowCard entry={post} />
+                  <ArrowCard item={post} />
                 </li>
               ))
             }
@@ -63,15 +70,17 @@ const projects: CollectionEntry<"projects">[] = (
         <section class="animate space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-y-2">
             <h2 class="font-semibold text-black dark:text-white">
-              Recent projects
+              {t("home.recentProjects")}
             </h2>
-            <Link href="/projects"> See all projects </Link>
+            <Link href={localizePath("/projects", lang)}>
+              {t("home.allProjects")}
+            </Link>
           </div>
           <ul class="not-prose flex flex-col gap-4">
             {
               projects.map((project) => (
                 <li>
-                  <ArrowCard entry={project} />
+                  <ArrowCard item={project} />
                 </li>
               ))
             }
@@ -80,16 +89,18 @@ const projects: CollectionEntry<"projects">[] = (
 
         <section class="animate space-y-4">
           <h2 class="font-semibold text-black dark:text-white">
-            Let's Connect
+            {t("home.connect")}
           </h2>
           <article>
-            <p>
-              If you want to get in touch with me about something or just to say
-              hi, reach out on social media, send me an email, or book a short
-              call.
-            </p>
+            <p>{t("home.connectText")}</p>
           </article>
           <ul class="not-prose flex flex-wrap gap-2">
+            <li class="flex gap-x-2 text-nowrap">
+              <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.TITLE}`}>
+                {SITE.EMAIL}
+              </Link>
+              {"/"}
+            </li>
             {
               SOCIALS.map((SOCIAL) => (
                 <li class="flex gap-x-2 text-nowrap">

@@ -1,0 +1,108 @@
+---
+import { render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { readingTime } from "@lib/utils";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import PostNavigation from "@components/PostNavigation.astro";
+import TableOfContents from "@components/TableOfContents.astro";
+import TranslationNotice from "@components/TranslationNotice.astro";
+import {
+  getLang,
+  getLocalizedEntries,
+  langParams,
+  localizePath,
+  useTranslations,
+} from "@i18n/utils";
+import { tagLabel } from "@i18n/tags";
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    langParams().map(async ({ params, props }) => {
+      const posts = await getLocalizedEntries("blog", props.lang);
+      // `posts` is newest first, so the previous (older) post comes after this
+      // one in the list and the next (newer) post comes before it.
+      return posts.map((post, i) => ({
+        params: { ...params, id: post.slug },
+        props: { post, prevPost: posts[i + 1], nextPost: posts[i - 1] },
+      }));
+    }),
+  );
+  return paths.flat();
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { entry } = post;
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+const { Content, headings } = await render(entry);
+
+// A post shown in a language it wasn't written in points search engines at
+// the real one.
+const canonical = post.isFallback
+  ? localizePath(`/blog/${post.slug}/`, entry.data.lang)
+  : undefined;
+---
+
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+  canonical={canonical}
+>
+  <Container>
+    <div class="animate">
+      <BackToPrevious href={localizePath("/blog", lang)}>{t("blog.back")}</BackToPrevious>
+    </div>
+    <div class="my-10 space-y-1">
+      <div class="animate flex items-center gap-1.5">
+        <div class="font-base text-sm">
+          <FormattedDate date={entry.data.date} />
+        </div>
+        &bull;
+        {entry.body && (
+          <div class="font-base text-sm">
+            {readingTime(entry.body, lang)}
+          </div>
+        )}
+      </div>
+      <h1
+        class="animate text-3xl font-semibold text-black dark:text-white"
+        lang={entry.data.lang !== lang ? entry.data.lang : undefined}
+      >
+        {entry.data.title}
+      </h1>
+      {
+        entry.data.tags && entry.data.tags?.length > 0 ? (
+          <div class="animate flex gap-2 pt-1">
+            {entry.data.tags.map((tag) => (
+              <a
+                href={localizePath(`/tags/${tag}`, lang)}
+                class="rounded-sm border border-black/15 px-2 py-1 text-sm transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
+              >
+                {tagLabel(tag, lang)}
+              </a>
+            ))}
+          </div>
+        ) : null
+      }
+    </div>
+    {
+      (post.original || post.isFallback) && (
+        <div class="mb-10">
+          <TranslationNotice item={post} />
+        </div>
+      )
+    }
+    {headings.length > 0 && <TableOfContents headings={headings} />}
+    <article
+      class="animate"
+      lang={entry.data.lang !== lang ? entry.data.lang : undefined}
+    >
+      <Content />
+      <div class="mt-24">
+        <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+      </div>
+    </article>
+  </Container>
+</Layout>

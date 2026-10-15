@@ -1,5 +1,8 @@
 ---
 import Search from "astro-pagefind/components/Search";
+import { getLang, useTranslations } from "@i18n/utils";
+
+const t = useTranslations(getLang(Astro));
 ---
 
 <aside data-pagefind-ignore>
@@ -22,9 +25,9 @@ import Search from "astro-pagefind/components/Search";
         }}
       />
       <div class="mr-2 pb-1 pt-4 text-right text-xs dark:prose-invert">
-        Press <span class="prose text-xs dark:prose-invert"
+        {t("search.press")} <span class="prose text-xs dark:prose-invert"
           ><kbd class="">Esc</kbd></span
-        > or click anywhere to close
+        > {t("search.close")}
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ import type { Metadata, Site, Socials } from "@types";
 export const SITE: Site = {
   TITLE: "Mathis Aujogue",
   DESCRIPTION: "Blog and portfolio of Mathis Aujogue",
-  EMAIL: "",
+  EMAIL: "contact@maujogue.fr",
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
 };
@@ -32,5 +32,9 @@ export const SOCIALS: Socials = [
   {
     NAME: "Linkedin",
     HREF: "https://www.linkedin.com/in/mathis-aujogue/",
+  },
+  {
+    NAME: "Malt",
+    HREF: "https://en.malt.fr/profile/mathisaujogue",
   },
 ];

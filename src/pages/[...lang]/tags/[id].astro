@@ -1,0 +1,60 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import {
+  getLang,
+  getLocalizedEntries,
+  langParams,
+  localizePath,
+  useTranslations,
+} from "@i18n/utils";
+import { tagLabel, type Tag } from "@i18n/tags";
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    langParams().map(async ({ params, props }) => {
+      const posts = await getLocalizedEntries("blog", props.lang);
+
+      // Get unique tags
+      const tags = [
+        ...new Set(posts.flatMap(({ entry }) => entry.data.tags || [])),
+      ];
+
+      // Create paths for each tag; posts are already sorted, most recent first
+      return tags.map((tag) => ({
+        params: { ...params, id: tag },
+        props: {
+          posts: posts.filter(({ entry }) => entry.data.tags?.includes(tag)),
+        },
+      }));
+    }),
+  );
+  return paths.flat();
+}
+
+const { posts } = Astro.props;
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+const label = tagLabel(Astro.params.id as Tag, lang);
+---
+
+<Layout
+  title={`${t("tags.pageTitle")}: ${label}`}
+  description={`${t("tags.postsTagged")} "${label}"`}
+>
+  <Container>
+    <div class="space-y-10" data-pagefind-ignore>
+      <BackToPrevious href={localizePath("/blog", lang)}>
+        {t("tags.all")}
+      </BackToPrevious>
+      <h1 class="animate font-semibold text-black dark:text-white">
+        {t("tags.postsTagged")} "{label}"
+      </h1>
+      <ul class="animate flex flex-col gap-4">
+        {posts.map((post) => <ArrowCard item={post} />)}
+      </ul>
+    </div>
+  </Container>
+</Layout>

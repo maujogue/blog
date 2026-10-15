@@ -1,0 +1,102 @@
+---
+import { render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { readingTime } from "@lib/utils";
+import BackToPrevious from "@components/BackToPrevious.astro";
+import Link from "@components/Link.astro";
+import TableOfContents from "@components/TableOfContents.astro";
+import TranslationNotice from "@components/TranslationNotice.astro";
+import {
+  getLang,
+  getLocalizedEntries,
+  langParams,
+  localizePath,
+  useTranslations,
+} from "@i18n/utils";
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    langParams().map(async ({ params, props }) => {
+      const projects = await getLocalizedEntries("projects", props.lang);
+      return projects.map((project) => ({
+        params: { ...params, id: project.slug },
+        props: { project },
+      }));
+    }),
+  );
+  return paths.flat();
+}
+
+const { project } = Astro.props;
+const { entry } = project;
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+const { Content, headings } = await render(entry);
+
+const canonical = project.isFallback
+  ? localizePath(`/projects/${project.slug}/`, entry.data.lang)
+  : undefined;
+---
+
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+  canonical={canonical}
+>
+  <Container>
+    <div class="animate">
+      <BackToPrevious href={localizePath("/projects", lang)}>
+        {t("projects.back")}
+      </BackToPrevious>
+    </div>
+    <div class="animate my-10 space-y-1">
+      <div class="flex items-center gap-1.5">
+        <div class="font-base text-sm">
+          <FormattedDate date={entry.data.date} />
+        </div>
+        &bull;
+        {entry.body && (
+          <div class="font-base text-sm">
+            {readingTime(entry.body, lang)}
+          </div>
+        )}
+      </div>
+      <h1 class="text-3xl font-semibold text-black dark:text-white">
+        {entry.data.title}
+      </h1>
+      {
+        (entry.data.demoURL || entry.data.repoURL) && (
+          <nav class="flex gap-1">
+            {entry.data.demoURL && (
+              <Link href={entry.data.demoURL} external>
+                demo
+              </Link>
+            )}
+            {entry.data.demoURL && entry.data.repoURL && <span>/</span>}
+            {entry.data.repoURL && (
+              <Link href={entry.data.repoURL} external>
+                repo
+              </Link>
+            )}
+          </nav>
+        )
+      }
+    </div>
+    {
+      (project.original || project.isFallback) && (
+        <div class="mb-10">
+          <TranslationNotice item={project} />
+        </div>
+      )
+    }
+    <TableOfContents headings={headings} />
+    <article
+      class="animate"
+      lang={entry.data.lang !== lang ? entry.data.lang : undefined}
+    >
+      <Content />
+    </article>
+  </Container>
+</Layout>

@@ -21,15 +21,32 @@ import "@fontsource/geist-mono/700.css";
 import "@fontsource/geist-mono/800.css";
 import "@fontsource/geist-mono/900.css";
 
+import { DATE_LOCALES, DEFAULT_LANG, LANGS } from "@i18n/ui";
+import { getLang, localizePath } from "@i18n/utils";
+
 interface Props {
   title: string;
   description: string;
   image?: string;
+  canonical?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {
+  title,
+  description,
+  image = "/astro-micro.jpg",
+  canonical = Astro.url.pathname,
+} = Astro.props;
 
-const { title, description, image = "/astro-micro.jpg" } = Astro.props;
+const lang = getLang(Astro);
+const canonicalURL = new URL(canonical, Astro.site);
+
+// Every page exists in every language, so its alternates are the same path
+// under each language prefix.
+const alternates = LANGS.map((l) => ({
+  lang: l,
+  href: new URL(localizePath(Astro.url.pathname, l), Astro.site),
+}));
 ---
 
 <!-- Global Metadata -->
@@ -45,6 +62,45 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Language alternates -->
+{alternates.map((alt) => <link rel="alternate" hreflang={alt.lang} href={alt.href} />)}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={new URL(localizePath(Astro.url.pathname, DEFAULT_LANG), Astro.site)}
+/>
+
+<!--
+  Language preference: a choice made with the language switch is remembered.
+  Without one, visitors whose browser isn't set to French are sent to the
+  English version of the page on their first load.
+-->
+<script is:inline>
+  (function () {
+    var stored = null;
+    try {
+      stored = localStorage.getItem("lang");
+    } catch (e) {}
+    var isBot =
+      navigator.webdriver ||
+      /bot|crawl|spider|slurp|lighthouse|preview/i.test(navigator.userAgent);
+    if (stored || isBot) {
+      redirectTo(stored);
+      return;
+    }
+    var browser = (navigator.languages && navigator.languages[0]) || navigator.language || "fr";
+    redirectTo(browser.toLowerCase().indexOf("fr") === 0 ? "fr" : "en");
+
+    function redirectTo(wanted) {
+      if (!wanted || wanted === document.documentElement.lang) return;
+      var alt = document.querySelector('link[rel="alternate"][hreflang="' + wanted + '"]');
+      if (!alt) return;
+      var url = new URL(alt.href);
+      location.replace(url.pathname + location.search + location.hash);
+    }
+  })();
+</script>
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
@@ -52,6 +108,7 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
+<meta property="og:locale" content={DATE_LOCALES[lang].replace("-", "_")} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -77,7 +134,6 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
     animate();
     updateThemeButtons();
     addCopyCodeButtons();
-    setGiscusTheme();
 
     const backToTop = document.getElementById("back-to-top");
     backToTop?.addEventListener("click", (event) => scrollToTop(event));
@@ -115,7 +171,54 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
       });
 
     document.addEventListener("scroll", onScroll);
+
+    initThemeMenu();
   }
+
+  // The header is persisted across navigations, so its listeners are only
+  // bound once.
+  function initThemeMenu() {
+    const menu = document.getElementById("theme-menu");
+    const button = document.getElementById("theme-menu-button");
+    const list = document.getElementById("theme-menu-list");
+    if (!menu || !button || !list || menu.dataset.bound) return;
+    menu.dataset.bound = "true";
+
+    function setOpen(open) {
+      list.hidden = !open;
+      button.setAttribute("aria-expanded", String(open));
+    }
+
+    button.addEventListener("click", () => setOpen(list.hidden));
+    list.addEventListener("click", () => setOpen(false));
+    document.addEventListener("click", (event) => {
+      if (!menu.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !list.hidden) {
+        setOpen(false);
+        button.focus();
+      }
+    });
+  }
+
+  // Remember a language picked by hand, and follow the current page's
+  // alternate rather than the persisted header's stale href.
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest?.("a[data-lang-switch]");
+    if (!link) return;
+    const lang = link.dataset.langSwitch;
+    try {
+      localStorage.setItem("lang", lang);
+    } catch (e) {}
+    const alt = document.querySelector(
+      `link[rel="alternate"][hreflang="${lang}"]`,
+    );
+    if (alt && link.closest("header")) {
+      event.preventDefault();
+      location.href = new URL(alt.href).pathname + location.hash;
+    }
+  });
 
   function updateThemeButtons() {
     const theme = localStorage.getItem("theme");
@@ -137,13 +240,22 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
     removeActiveButtonTheme(darkThemeButton);
     removeActiveButtonTheme(systemThemeButton);
 
-    if (theme === "light") {
-      addActiveButtonTheme(lightThemeButton);
-    } else if (theme === "dark") {
-      addActiveButtonTheme(darkThemeButton);
-    } else {
-      addActiveButtonTheme(systemThemeButton);
+    const active =
+      theme === "light" || theme === "dark" ? theme : "system";
+    addActiveButtonTheme(
+      { light: lightThemeButton, dark: darkThemeButton, system: systemThemeButton }[active],
+    );
+
+    for (const [name, button] of [
+      ["light", lightThemeButton],
+      ["dark", darkThemeButton],
+      ["system", systemThemeButton],
+    ]) {
+      button?.setAttribute("aria-checked", String(name === active));
     }
+    document.querySelectorAll("[data-theme-icon]").forEach((icon) => {
+      icon.classList.toggle("hidden", icon.dataset.themeIcon !== active);
+    });
   }
 
   function animate() {
@@ -198,8 +310,6 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
 
     window.getComputedStyle(css).opacity;
     document.head.removeChild(css);
-
-    setGiscusTheme();
   }
 
   function preloadTheme() {
@@ -248,18 +358,6 @@ const { title, description, image = "/astro-micro.jpg" } = Astro.props;
       });
     }
   }
-
-  const setGiscusTheme = () => {
-    const giscus = document.querySelector(".giscus-frame");
-
-    const isDark = document.documentElement.classList.contains("dark");
-
-    if (giscus) {
-      const url = new URL(giscus.src);
-      url.searchParams.set("theme", isDark ? "dark" : "light");
-      giscus.src = url.toString();
-    }
-  };
 
   document.addEventListener("DOMContentLoaded", () => init());
   document.addEventListener("astro:after-swap", () => init());

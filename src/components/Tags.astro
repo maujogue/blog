@@ -1,25 +1,39 @@
 ---
-import { getCollection } from "astro:content";
+import {
+  getLang,
+  localizePath,
+  useTranslations,
+  type LocalizedEntry,
+} from "@i18n/utils";
+import { tagLabel } from "@i18n/tags";
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
-const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
+type Props = {
+  posts: LocalizedEntry<"blog">[];
+};
+
+const { posts } = Astro.props;
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+const tags = [
+  ...new Set(posts.flatMap(({ entry }) => entry.data.tags || [])),
+].sort();
 ---
 
 <div class="space-y-4">
-    <div class="animate font-semibold text-black dark:text-white">Tags</div>
+    <div class="animate font-semibold text-black dark:text-white">{t("tags.title")}</div>
     <div class="animate flex flex-wrap gap-2">
         {
             tags.map((tag) => (
                 <a
-                    href={`/tags/${tag}`}
+                    href={localizePath(`/tags/${tag}`, lang)}
                     class="rounded-sm border border-black/15 px-2 py-1 text-sm transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5 dark:focus-visible:text-white"
                 >
-                    {tag}{" "}
+                    {tagLabel(tag, lang)}{" "}
                     <span class="text-sm text-gray-600">
                         (
                         {
-                            posts.filter((post) =>
-                                post.data.tags?.includes(tag),
+                            posts.filter(({ entry }) =>
+                                entry.data.tags?.includes(tag),
                             ).length
                         }
                         )

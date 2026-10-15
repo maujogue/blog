@@ -1,6 +1,6 @@
 ---
-title: "Un hackathon, c'est quoi et pour qui ? — Anatomie du hackathon #1"
-description: "7 épreuves et 4 victoires plus tard : ce qu'on ne sait pas avant de se lancer"
+title: "Un hackathon, c'est quoi et pour qui ? - Anatomie du hackathon #1"
+description: "7 épreuves et 4 victoires plus tard"
 date: 2026-10-13
 tags: ["hackathon"]
 draft: false
@@ -105,6 +105,6 @@ Oui. Les deux premiers jours ont été très durs. Ça s'est amélioré ensuite.
 
 ---
 
-*Rendez-vous dans [le prochain épisode](/blog/le-produit-avant-le-code) !*
+*Prochain épisode : [le produit avant le code](/blog/le-produit-avant-le-code). Ou comment gagner en arrêtant de coder.*
 
 PS : ceci est un coup d'essai à la rédaction de blog. C'est un exercice difficile (qui fera l'objet de son blog post !). Commencer par une série, sur un sujet si vaste et complet, je vous accorde que c'est pas le plus simple !
