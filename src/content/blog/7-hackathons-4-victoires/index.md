@@ -11,8 +11,7 @@ draft: false
 
 Après la fin de mes études, j'ai voulu revenir sur l'une des plus grandes découverte et fiertés de mon cursus : les hackathons.
 
-Le hackathon, méconnu du grand public, est un grand classique du secteur dev/tech.
-En quelques mots, c'est un événement durant lequel des personnes se réunissent pendant une courte période de temps, afin de travailler ensemble sur le développement d'un projet.
+Le hackathon, méconnu du grand public, est un grand classique du secteur dev/tech. Contraction de "hack" et "marathon", c'est un événement durant lequel des personnes se réunissent pendant une courte période de temps, afin de travailler ensemble sur le développement d'un projet.
 
 Au travers de cette mini-série, je souhaite partager l'amour que j'ai développé au fil des années pour cette épreuve. Mon expérience, mes réussites, mes échecs et mes apprentissages. Je m'adresse à la fois à :
 - **l'étudiant(e) qui n'en a jamais fait, débutant ou expérimenté.** Le hackathon boostera vos études. En terme de connaissances, mais aussi d'ouverture d'esprit, de rencontres et d'opportunités.
