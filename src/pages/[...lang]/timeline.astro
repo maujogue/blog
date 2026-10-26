@@ -1,0 +1,63 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import { TIMELINE } from "@data/timeline";
+import {
+  getLang,
+  langParams,
+  localizePath,
+  useTranslations,
+} from "@i18n/utils";
+
+export function getStaticPaths() {
+  return langParams();
+}
+
+const lang = getLang(Astro);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("timeline.title")} description={t("timeline.description")}>
+  <Container>
+    <div class="space-y-10">
+      <h1 class="animate font-semibold text-black dark:text-white">
+        {t("timeline.title")}
+      </h1>
+      <ol
+        class="animate relative space-y-8 border-l border-black/15 dark:border-white/20"
+      >
+        {
+          TIMELINE.map((item) => (
+            <li class="relative pl-6">
+              <span
+                aria-hidden="true"
+                class="absolute -left-[5px] top-1.5 size-2.5 rounded-full border border-black/30 bg-neutral-100 dark:border-white/40 dark:bg-neutral-900"
+              />
+              <div class="font-mono text-xs">
+                {item.date[lang]}
+              </div>
+              <div class="mt-1 text-sm">
+                {item.href ? (
+                  <Link href={localizePath(item.href, lang)}>
+                    {item.what[lang]}
+                  </Link>
+                ) : (
+                  item.what[lang]
+                )}
+                {item.win && (
+                  <span role="img" aria-label={t("timeline.win")} title={t("timeline.win")}>
+                    {" "}🏆
+                  </span>
+                )}
+              </div>
+              <p class="mt-1 text-black dark:text-white">
+                {item.takeaway[lang]}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </Container>
+</Layout>

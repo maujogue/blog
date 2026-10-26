@@ -4,7 +4,7 @@ description: "Un classifieur d'images qui reconnaît des maladies."
 date: "07/01/2026"
 repoURL: "https://github.com/Neopuyo/Leaffliction.git"
 tags: ["ai", "computer vision", "transfer learning"]
-draft: false
+draft: true
 ---
 
 Une photo de feuille de pommier ou de vigne en entrée, un diagnostic en sortie : saine, ou atteinte de pourriture noire, de rouille, de tavelure, d'esca... C'est l'objectif de ce projet de computer vision, réalisé à trois dans le cadre du cursus de l'école 42.

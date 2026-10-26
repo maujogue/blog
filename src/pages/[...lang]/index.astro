@@ -2,6 +2,8 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { SITE, SOCIALS } from "@consts";
+import { NOW } from "@data/now";
+import { DATE_LOCALES } from "@i18n/ui";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import {
@@ -24,9 +26,9 @@ const blog = (await getLocalizedEntries("blog", lang)).slice(
   SITE.NUM_POSTS_ON_HOMEPAGE,
 );
 
-const projects = (await getLocalizedEntries("projects", lang)).slice(
-  0,
-  SITE.NUM_PROJECTS_ON_HOMEPAGE,
+const nowMonth = new Date(`${NOW.month}-01T00:00:00`).toLocaleDateString(
+  DATE_LOCALES[lang],
+  { month: "long", year: "numeric" },
 );
 ---
 
@@ -37,16 +39,43 @@ const projects = (await getLocalizedEntries("projects", lang)).slice(
       <div class="space-y-16">
         <section>
           <article class="space-y-4">
-            <span>
-              <p>
-                {t("home.intro1")} <br />
-                {t("home.intro2")}
-              </p>
-            </span>
-            <span class="animate">
-              <p>{t("home.intro3")}</p>
-            </span>
+            <p>
+              {t("home.intro1")} <br />
+              {t("home.intro2")} <br />
+              {t("home.intro3")}
+            </p>
+            <p class="animate">{t("home.intro4")}</p>
           </article>
+          <div class="animate mt-4 text-sm">
+            <Link href={localizePath("/timeline", lang)}>
+              {t("home.timelineLink")} →
+            </Link>
+          </div>
+        </section>
+
+        <section class="animate space-y-4">
+          <h2 class="font-semibold text-black dark:text-white">
+            {t("home.now", { month: nowMonth })}
+          </h2>
+          <ul class="list-disc space-y-2 pl-5">
+            {
+              NOW.items.map((item) => (
+                <li>
+                  <span class="font-medium text-black dark:text-white">
+                    {item.label[lang]}
+                  </span>
+                  {lang === "fr" ? " : " : ": "}
+                  {item.href ? (
+                    <Link href={localizePath(item.href, lang)} class="inline">
+                      {item.text[lang]}
+                    </Link>
+                  ) : (
+                    item.text[lang]
+                  )}
+                </li>
+              ))
+            }
+          </ul>
         </section>
 
         <section class="animate space-y-6">
@@ -61,26 +90,6 @@ const projects = (await getLocalizedEntries("projects", lang)).slice(
               blog.map((post) => (
                 <li>
                   <ArrowCard item={post} />
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
-        <section class="animate space-y-6">
-          <div class="flex flex-wrap items-center justify-between gap-y-2">
-            <h2 class="font-semibold text-black dark:text-white">
-              {t("home.recentProjects")}
-            </h2>
-            <Link href={localizePath("/projects", lang)}>
-              {t("home.allProjects")}
-            </Link>
-          </div>
-          <ul class="not-prose flex flex-col gap-4">
-            {
-              projects.map((project) => (
-                <li>
-                  <ArrowCard item={project} />
                 </li>
               ))
             }

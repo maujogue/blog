@@ -23,6 +23,7 @@ export const ui = {
     "site.description": "Blog et portfolio de Mathis Aujogue",
     "nav.blog": "blog",
     "nav.projects": "projets",
+    "nav.timeline": "timeline",
     "nav.search": "Rechercher",
     "nav.language": "Langue",
     "theme.label": "Thème",
@@ -31,14 +32,17 @@ export const ui = {
     "theme.system": "Système",
     "home.title": "Accueil",
     "home.description": "Bienvenue sur mon blog et portfolio.",
-    "home.intro1": "Voici mon blog et mon portfolio.",
-    "home.intro2": "C'est un chantier en cours, alors n'en attendez pas trop !",
+    "home.intro1": "Amoureux de tech utile et sensée. Curieux débordant.",
+    "home.intro2":
+      "Je joue avec la genAI pour tirer l'utile du buzzword, bientôt backpacker en Asie.",
     "home.intro3":
-      "J'y partage mes réflexions, mes expériences et mes projets, en tant qu'étudiant (à vie), freelance et en tant que personne. ",
+      "Fier alumni 42, où on apprend à apprendre plutôt qu'à trouver une case.",
+    "home.intro4":
+      "Des notes d'humeur, des réflexions. Sur ce métier qui n'arrête pas de changer. Sur comment utiliser la tech pour faire un peu de bien dans ce bas monde.",
+    "home.timelineLink": "Mon parcours, en timeline",
+    "home.now": "Now — {month}",
     "home.latestPosts": "Derniers articles",
     "home.allPosts": "Voir tous les articles",
-    "home.recentProjects": "Projets récents",
-    "home.allProjects": "Voir tous les projets",
     "home.connect": "Contacts",
     "home.connectText":
       "Pour discuter de quelque chose ou juste dire bonjour, vous pouvez me trouver en ligne ou m'envoyer un e-mail :)",
@@ -50,6 +54,10 @@ export const ui = {
     "projects.description":
       "Mes projets, avec les liens vers les dépôts et les démos.",
     "projects.back": "Retour aux projets",
+    "timeline.title": "Timeline",
+    "timeline.description":
+      "Mon parcours, de 2003 à aujourd'hui, et ce que j'en retiens.",
+    "timeline.win": "Hackathon gagné",
     "tags.title": "Tags",
     "tags.all": "Tous les tags",
     "tags.postsTagged": "Articles avec le tag",
@@ -69,6 +77,7 @@ export const ui = {
     "site.description": "Blog and portfolio of Mathis Aujogue",
     "nav.blog": "blog",
     "nav.projects": "projects",
+    "nav.timeline": "timeline",
     "nav.search": "Search",
     "nav.language": "Language",
     "theme.label": "Theme",
@@ -77,14 +86,17 @@ export const ui = {
     "theme.system": "System",
     "home.title": "Home",
     "home.description": "Welcome to my blog and portfolio.",
-    "home.intro1": "This will be my blog and portfolio.",
-    "home.intro2": "It's a work in progress, so don't expect anything of it!",
+    "home.intro1": "In love with useful, sensible tech. Overflowing with curiosity.",
+    "home.intro2":
+      "I play with genAI to get the useful part out of the buzzword, soon backpacking across Asia.",
     "home.intro3":
-      "Here I want to share my reflexions, experiences and projects as a student and a person.",
+      "Proud 42 alumnus, where you learn how to learn rather than how to fit in a box.",
+    "home.intro4":
+      "Mood notes, reflections. On a job that never stops changing. On how to use tech to do a little good in this world.",
+    "home.timelineLink": "My path, as a timeline",
+    "home.now": "Now — {month}",
     "home.latestPosts": "Latest posts",
     "home.allPosts": "See all posts",
-    "home.recentProjects": "Recent projects",
-    "home.allProjects": "See all projects",
     "home.connect": "Let's Connect",
     "home.connectText":
       "If you want to get in touch with me about something or just to say hi, reach out on social media or send me an email.",
@@ -96,6 +108,10 @@ export const ui = {
     "projects.description":
       "A collection of my projects with links to repositories and live demos.",
     "projects.back": "Back to projects",
+    "timeline.title": "Timeline",
+    "timeline.description":
+      "My path, from 2003 to today, and what I took away from it.",
+    "timeline.win": "Hackathon won",
     "tags.title": "Tags",
     "tags.all": "All tags",
     "tags.postsTagged": "Posts tagged with",

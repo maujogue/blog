@@ -4,7 +4,7 @@ description: "An image classifier that recognises diseases."
 date: "07/01/2026"
 repoURL: "https://github.com/Neopuyo/Leaffliction.git"
 tags: ["ai", "computer vision", "transfer learning"]
-draft: false
+draft: true
 lang: en
 aiTranslated: true
 ---

@@ -57,7 +57,31 @@ Other useful commands:
 
 ---
 
+## Updating the "Now" block
+
+Edit `src/data/now.ts`: set `month` (`"YYYY-MM"`, shown as "octobre 2026" / "October 2026") and edit the items. Each item has a `label` and a `text` in `fr` and `en`, plus an optional `href` (e.g. `"/tags/hackathon"`; the `/en` prefix is added automatically).
+
+---
+
+## Adding a timeline entry
+
+Add an object to `TIMELINE` in `src/data/timeline.ts`, at its chronological place (the page shows entries in file order, oldest first):
+
+```ts
+{
+  date: { fr: "janv. 2027", en: "Jan 2027" },
+  what: { fr: "…", en: "…" },
+  takeaway: { fr: "…", en: "…" },
+  win: true,               // optional: hackathon win, shows 🏆
+  href: "/tags/hackathon", // optional: links the "what" line
+},
+```
+
+---
+
 ## Adding a project
+
+> Projects are currently unpublished: the entries are `draft: true` and the pages live in `src/pages/[...lang]/_projects/` (Astro skips folders starting with `_`). To bring them back, rename the folder to `projects`, set `draft: false`, and add the link back in `Header.astro`.
 
 1. Create a folder under `src/content/projects/` with an `index.md` file:
 
