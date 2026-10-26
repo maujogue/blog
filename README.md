@@ -65,7 +65,7 @@ Edit `src/data/now.ts`: set `month` (`"YYYY-MM"`, shown as "octobre 2026" / "Oct
 
 ## Adding a timeline entry
 
-Add an object to `TIMELINE` in `src/data/timeline.ts`, at its chronological place (the page shows entries in file order, oldest first):
+Add an object to `TIMELINE` in `src/data/timeline.ts`, at its chronological place, oldest first (usually the end). The page shows them reversed, newest first:
 
 ```ts
 {

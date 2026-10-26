@@ -28,7 +28,7 @@ const t = useTranslations(lang);
         class="animate relative space-y-8 border-l border-black/15 dark:border-white/20"
       >
         {
-          TIMELINE.map((item) => (
+          [...TIMELINE].reverse().map((item) => (
             <li class="relative pl-6">
               <span
                 aria-hidden="true"

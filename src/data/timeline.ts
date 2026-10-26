@@ -12,8 +12,8 @@ export type TimelineEntry = {
   href?: string;
 };
 
-// Entries of the /timeline page, shown in this order: oldest first.
-// To add one, append an object at the right place. `en` is an AI translation of `fr`.
+// Entries of the /timeline page, kept here oldest first; the page shows them
+// newest first. To add one, insert it at its chronological place (usually the end). `en` is an AI translation of `fr`.
 export const TIMELINE: TimelineEntry[] = [
   {
     date: { fr: "2003", en: "2003" },
