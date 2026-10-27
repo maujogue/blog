@@ -38,3 +38,7 @@ export const SOCIALS: Socials = [
     HREF: "https://en.malt.fr/profile/mathisaujogue",
   },
 ];
+
+// Cloudflare Web Analytics site token (public, ends up in the page HTML).
+// Leave empty to disable the beacon.
+export const CF_ANALYTICS_TOKEN = "312e7fbd9e8f4ce18bf60191beb1d96d";
