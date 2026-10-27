@@ -172,6 +172,14 @@ export const TIMELINE: TimelineEntry[] = [
     win: true,
   },
   {
+    date: { fr: "sept. 2026", en: "Sep 2026" },
+    what: { fr: "Freelance AI engineer", en: "Freelance AI engineer" },
+    takeaway: {
+      fr: "Le changement de responsabilité quand on n'est plus étudiant. La liberté de choisir ses horaires et ses projets.",
+      en: "The shift in responsibility once you're no longer a student. The freedom to choose your own hours and projects.",
+    },
+  },
+  {
     date: { fr: "oct. 2026", en: "Oct 2026" },
     what: {
       fr: "Lancement du blog, série Anatomie du hackathon",
