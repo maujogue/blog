@@ -1,5 +1,5 @@
 ---
-title: "What is a hackathon, and who is it for? - Anatomy of a hackathon #1"
+title: "What is a hackathon? 5 common misconceptions - Anatomy of a hackathon #1"
 description: "7 events and 4 wins later"
 date: 2026-10-13
 tags: ["hackathon"]
@@ -85,7 +85,7 @@ Seven formats, seven subjects, seven settings. And yet, the same three ingredien
 
 ## Contents: your series in several episodes
 
-2. **[Product before code](/en/blog/le-produit-avant-le-code)**: we won a hackathon without writing a single line. The hardest part was figuring out what to build.
+2. **[Winning without coding: product first](/en/blog/hackathon2)**: we won a hackathon without writing a single line. The hardest part was figuring out what to build.
 3. **The pitch, the exercise that makes all the difference**: and that took me 7 hackathons to take seriously.
 4. **Different people in the same room**: domain experts, mentors, teammates: what you learn from others.
 5. **What a hackathon won't give you**: you should know before you go that it's not all sunshine.
@@ -107,7 +107,7 @@ At times, in the thick of it, yes. Looking back, not in the slightest.
 
 ---
 
-*Next episode: [product before code](/en/blog/le-produit-avant-le-code). Or how to win by stopping coding.*
+*Next episode: [product before code](/en/blog/hackathon2). Or how to win by stopping coding.*
 
 
 

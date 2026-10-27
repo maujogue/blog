@@ -1,5 +1,5 @@
 ---
-title: "Un hackathon, c'est quoi et pour qui ? - Anatomie du hackathon #1"
+title: "C'est quoi un hackathon ? Les 5 idées reçues - Anatomie du hackathon #1"
 description: "7 épreuves et 4 victoires plus tard"
 date: 2026-10-13
 tags: ["hackathon"]
@@ -82,7 +82,7 @@ Sept formats, sept sujets, sept environnements. Et pourtant, on retrouve presque
 
 ## Sommaire : votre feuilleton en plusieurs épisodes
 
-2. **[Le produit avant le code](/blog/le-produit-avant-le-code)** : on a gagné un hackathon sans écrire une ligne. Le plus dur, c'était de trouver quoi construire.
+2. **[Gagner sans coder : le produit avant tout](/blog/hackathon2)** : on a gagné un hackathon sans écrire une ligne. Le plus dur, c'était de trouver quoi construire.
 3. **Le pitch, l'exercice qui fait toute la différence** : et qu'il m'a fallu 7 hackathons pour prendre au sérieux.
 4. **Des gens différents dans la même pièce** : experts métier, mentors, coéquipiers : ce qu'on apprend des autres.
 5. **Ce qu'un hackathon ne vous apportera pas** : il faut savoir avant d'y aller que tout n'est pas rose.
@@ -104,6 +104,6 @@ Oui. Les deux premiers jours ont été très durs. Ça s'est amélioré ensuite.
 
 ---
 
-*Prochain épisode : [le produit avant le code](/blog/le-produit-avant-le-code). Ou comment gagner en arrêtant de coder.*
+*Prochain épisode : [le produit avant le code](/blog/hackathon2). Ou comment gagner en arrêtant de coder.*
 
 PS : ceci est un coup d'essai à la rédaction de blog. C'est un exercice difficile (qui fera l'objet de son blog post !). Commencer par une série, sur un sujet si vaste et complet, je vous accorde que c'est pas le plus simple !

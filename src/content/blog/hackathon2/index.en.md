@@ -1,5 +1,5 @@
 ---
-title: "Product before code - Anatomy of a hackathon #2"
+title: "Winning without coding: product first - Anatomy of a hackathon #2"
 description: "We didn't win with code."
 date: 2026-10-14
 tags: ["hackathon"]

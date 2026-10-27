@@ -1,5 +1,5 @@
 ---
-title: "Le produit avant le code - Anatomie du hackathon #2"
+title: "Gagner sans coder : le produit avant tout - Anatomie du hackathon #2"
 description: "On n'a pas gagné avec du code."
 date: 2026-10-14
 tags: ["hackathon"]
